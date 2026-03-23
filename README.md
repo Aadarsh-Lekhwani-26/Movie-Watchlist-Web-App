@@ -1,6 +1,6 @@
 # 🎬 CineNexus
 
-##📖 Description
+## 📖 Description
 A web application that allows users to search for movies, view details, and manage a personal watchlist using data fetched from the OMDb API.
 ___
 
@@ -19,14 +19,14 @@ ___
 > Note: An API key is required to use the TMDb API.
 ___
 
-##🛠️ Tech Stack
+## 🛠️ Tech Stack
 - HTML
 - CSS
 - JavaScript
 - Fetch API
 ___
 
-##🚀 How to Run
+## 🚀 How to Run
 - Clone the repository
 - Open index.html in browser
 ___
