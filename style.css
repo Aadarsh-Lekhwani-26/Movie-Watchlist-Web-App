@@ -2,7 +2,7 @@ body{
     margin: 0;
     font-family: Ariel, sans-serif;
     background-color: #0f172a;;
-    color: white;
+    color: #ffffff;
 }
 
 header {
@@ -11,18 +11,23 @@ header {
     align-items: center;
     padding: 15px 30px;
     background-color: #020617;
+    border-bottom: 1px solid #1e293b;
 
 }
 
 h1{
     margin: 0;
+    color: #7c3aed
 }
 
 input{
     padding: 8px;
     width: 250px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: none;
+    outline: none;
+    background-color: #1e293b;
+    color: white;
 }
 
 .filters{
@@ -31,11 +36,22 @@ input{
     padding: 15px 30px;
 }
 
+select{
+    padding: 8px;
+    border-radius: 6px;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+}
+
+/* Movie Grid */
 #movieContainer{
     display: grid;
-    grid-template-columns: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     padding: 20px;
-    
+
 
 }
+
+/* Movie Card */
