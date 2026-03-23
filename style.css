@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    font-family: Ariel, sans-serif;
+    background-color: #0f172a;;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #020617;
+
+}
+
+h1{
+    margin: 0;
+}
+
+input{
+    padding: 8px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+}
+
+.filters{
+    display: flex;
+    gap: 10px;
+    padding: 15px 30px;
+}
+
+#movieContainer{
+    display: grid;
+    grid-template-columns: 5px;
+    gap: 20px;
+    padding: 20px;
+    
+
+}

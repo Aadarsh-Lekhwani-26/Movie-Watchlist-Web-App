@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineNexus</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <!-- navbar -->
+     <header>
+        <h1>CineNexus</h1>
+        <input type="text" id="searchInput" placeholder="Search Movies...">
+     </header>
+     <section class="filters">
+        <select id="genreFilter">
+            <option value="">All Genres</option>
+            <option value="28">Action</option>
+            <option value="35">Comedy</option>
+            <option value="10749">Romance</option>
+            <option value="romcom">Rom-Com</option>
+            <option value="27">Horror</option>
+            <option value="53">Thriller</option>
+            <option value="878">Sci-Fi</option>
+            <option value="18">Drama</option>
+            <option value="16">Animation</option>
+            <option value="80">Crime</option>
+            <option value="12">Adventure</option>
+            <option value="14">Fantasy</option>
+            
+            
+            
+        </select>
+
+        <select id="sortOption">
+            <option value="">Sort By</option>
+            <option value="rating">Rating</option>
+            <option value="date">Release Date</option>
+        </select>
+     
+    </section>
+
+    <!-- Movies Container -->
+     <main id="movieContainer">
+
+
+     </main>
+
+
+
+
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
