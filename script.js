@@ -5,7 +5,7 @@ const BASE_URL = "https://api.themoviedb.org/3"
 const movieContainer = document.getElementById("movieContainer");
 
 let currentPage = 1;
-// let movies =[];
+let movies =[];
 
 async function getMovies(page = 1) {
   const response = await fetch(
@@ -13,9 +13,9 @@ async function getMovies(page = 1) {
   );
   const data = await response.json();
 
-  // movies = [...movies, ...data.results]
-  // displayMovies(movies);
-  displayMovies(data.results);
+  movies = [...movies, ...data.results]
+  displayMovies(movies);
+  // displayMovies(data.results);
 }
 
 function displayMovies(movies){
