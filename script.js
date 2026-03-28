@@ -44,14 +44,16 @@ function addRemoveListerners(){
       watchlist = watchlist.filter(movie => movie.id !== id);
 
       renderWatchlist();
+      displayMovies(movies);
     })
   })
 }
-
+//clear all logic of watchlist
 document.getElementById("clearWatchlist")
 .addEventListener("click",()=>{
   watchlist =[];
   renderWatchlist();
+  displayMovies(movies);
 })
 
 async function getMovies(page = 1) {
@@ -110,20 +112,31 @@ function displayMovies(movies){
 
       localStorage.setItem("favorites",JSON.stringify(favorites));
     })
-
+// watchlist button js
     const watchBtn = movieCard.querySelector(".watchlist-btn");
 
+    // check if already added
+    if (watchlist.some(item =>item.id === movie.id)){
+      watchBtn.textContent = "✓ Added";
+      watchBtn.classList.add("added");
+    }
+
     watchBtn.addEventListener("click",()=>{
-      const movieData = {
-        id: movie.id,
-        title: movie.title
-      };
+      
 
       const exists = watchlist.some(item=>item.id === movie.id);
 
       if (!exists){
+        const movieData = {
+        id: movie.id,
+        title: movie.title
+      };
+
         watchlist.push(movieData);
         renderWatchlist();
+
+        watchBtn.textContent = "✓ Added";
+        watchBtn.classList.add("added");
       }
     });
 
@@ -148,4 +161,23 @@ loadMoreBtn.addEventListener("click", ()=>{
 
 //calling watchlist display fucntion
 renderWatchlist();
+
+
+
+
+// adding js for random movie suggestion
+const randomBtn = document.getElementById("randomMovie");
+
+randomBtn.addEventListener("click",()=>{
+  if (watchlist.length === 0){
+    alert("Watchlist is empty :(");
+    return
+  }
+
+const randomIndex = Math.floor(Math.random() * watchlist.length);
+
+const randomMovie = watchlist[randomIndex];
+
+alert(`🎬 Tonight's Movie: ${randomMovie.title}`)
+})
 

@@ -47,10 +47,10 @@ select{
 /* Movie Grid */
 #movieContainer{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     padding: 20px;
-
+    /* justify-content: center; */
 
 }
 
@@ -63,6 +63,8 @@ select{
     overflow: hidden;
     transition: 0.3s ease ;
     cursor: pointer;
+    /* width: 100%;
+    max-width: 220px; */
 }
 
 .movie-card:hover {
@@ -208,3 +210,26 @@ select{
 .heart.active{
     color: red;
 }
+
+#randomMovie {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+
+    background: #22c55e;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+    font-size: 13px;
+
+    transition: 0.25s ease;
+}
+
+#randomMovie:hover {
+    background: #16a34a;
+}
+
+
