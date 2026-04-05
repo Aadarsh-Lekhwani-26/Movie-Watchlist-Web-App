@@ -228,3 +228,17 @@ const randomMovie = watchlist[randomIndex];
 alert(`🎬 Tonight's Movie: ${randomMovie.title}`)
 })
 
+
+
+// watchlist toggle 
+const watchlistToggle = document.getElementById("watchlistToggle");
+const watchlistPanel = document.getElementById("watchlist");
+const hideWatchlist = document.getElementById("hideWatchlist");
+
+watchlistToggle.addEventListener("click", ()=>{
+  watchlistPanel.classList.add("open");
+});
+
+hideWatchlist.addEventListener("click", ()=>{
+  watchlistPanel.classList.remove("open");
+});
