@@ -18,6 +18,16 @@ const genreMap = {
   53: "Thriller"
 };
 
+
+
+// search input
+const searchInput = document.getElementById("searchInput");
+
+
+
+
+
+
 let currentPage = 1;
 let movies =[];
 // for favorites
@@ -241,4 +251,35 @@ watchlistToggle.addEventListener("click", ()=>{
 
 hideWatchlist.addEventListener("click", ()=>{
   watchlistPanel.classList.remove("open");
+});
+
+
+// search input eventlistner and function to get movies from whole data fetched from API
+async function searchMovies(query){
+  const response = await fetch(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+  );
+
+  const data = await response.json();
+
+  movies = data.results;
+  displayMovies(movies);
+}
+
+let timeout;
+
+searchInput.addEventListener("input", () => {
+  clearTimeout(timeout);
+
+  timeout = setTimeout(()=>{
+    const query = searchInput.value.trim();
+
+    if(query.length > 0){
+      searchMovies(query);
+    } else {
+      movies = [];
+      currentPage = 1;
+      getMovies(currentPage);
+    }
+  }, 400);
 });
