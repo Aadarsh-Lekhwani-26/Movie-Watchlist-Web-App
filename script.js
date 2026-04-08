@@ -24,6 +24,13 @@ const genreMap = {
 const searchInput = document.getElementById("searchInput");
 
 
+// filters const
+const genreFilter = document.getElementById("genreFilter");
+const languageFilter = document.getElementById("languageFilter");
+const typeFilter = document.getElementById("typeFilter");
+const sortFilter = document.getElementById("sortFilter");
+
+
 
 
 
@@ -84,13 +91,25 @@ async function getMovies(page = 1) {
   const response = await fetch(
     `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`
   );
+
   const data = await response.json();
 
-  movies = [...movies, ...data.results]
+  movies = [...movies, ...data.results];
   displayMovies(movies);
-  // displayMovies(data.results);
+
 }
 
+async function getTVShows(page = 1) {
+
+  const response = await fetch(
+    `${BASE_URL}/tv/popular?api_key=${API_KEY}&page=${page}`
+  );
+
+  const data = await response.json();
+
+  movies = [...movies, ...data.results];
+  displayMovies(movies);
+}
 
 function displayMovies(movies){
   movieContainer.innerHTML="";
@@ -111,7 +130,7 @@ function displayMovies(movies){
     </div>
 
     <div class="movie-info">
-      <h3>${movie.title}</h3>
+      <h3>${movie.title || movie.name}</h3>
       <p>⭐ ${movie.vote_average} | ${genres}</p>
       <button class="watchlist-btn" data-id="${movie.id}" data-title="${movie.title}">
         Add to Watchlist
@@ -264,6 +283,7 @@ async function searchMovies(query){
 
   movies = data.results;
   displayMovies(movies);
+
 }
 
 let timeout;
@@ -282,4 +302,93 @@ searchInput.addEventListener("input", () => {
       getMovies(currentPage);
     }
   }, 400);
+});
+
+
+
+// making filters work
+// genre
+genreFilter.addEventListener("change", () => {
+  const selectedGenre = Number(genreFilter.value);
+
+  if(!selectedGenre){
+    displayMovies(movies);
+    return;
+  }
+
+  const filtered = movies.filter(movie =>
+    movie.genre_ids.includes(selectedGenre)
+  );
+
+  displayMovies(filtered);
+});
+// genreFilter.addEventListener("change", applyFilters);
+
+
+
+
+
+// language
+languageFilter.addEventListener("change", () => {
+  const selectedLanguage = languageFilter.value;
+
+  if(!selectedLanguage){
+    displayMovies(movies);
+    return;
+  }
+
+  const filtered = movies.filter(movie =>
+    movie.original_language === selectedLanguage
+  );
+
+  displayMovies(filtered);
+});
+
+// languageFilter.addEventListener("change", applyFilters);
+
+// type
+typeFilter.addEventListener("change", () => {
+
+  const type = typeFilter.value;
+
+  currentPage = 1;
+  movies = [];
+
+  if(type === "movie"){
+    getMovies(currentPage);
+  }
+
+  else if(type === "tv"){
+    getTVShows(currentPage);
+  }
+
+  else{
+    getMovies(currentPage);
+  }
+
+});
+
+
+
+
+
+
+// sort
+sortFilter.addEventListener("change", () => {
+
+  const sortBy = sortFilter.value;
+
+  if(sortBy === "rating"){
+    movies.sort((a,b)=> b.vote_average - a.vote_average);
+  }
+
+  else if(sortBy === "year"){
+    movies.sort((a,b)=>
+      new Date(b.release_date || b.first_air_date) -
+      new Date(a.release_date || a.first_air_date)
+    );
+  }
+
+  displayMovies(movies);
+
 });
